@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- #1 -->
+	<bean id="t5" class="kr.co.soldesk.beans.TestBean5" lazy-init="true" init-method="bean5_init" />
+	<bean id="t6" class="kr.co.soldesk.beans.TestBean6" lazy-init="true" init-method="bean6_init" />
+	
+	<!-- #2 init-method 실행전과 후에 실행되는 메서드 구현 -->
+	<bean class="kr.co.soldesk.processor.TestBeanPostProcessor">
+	
+	
+	
+</bean>
+	
+</beans>

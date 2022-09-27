@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+	default-init-method="defalt_init" default-destroy-method="defalt_destroy">
+
+	<!-- #1 init-method: 객체가 호출 후 / destroy-method : 객체 소멸 -->
+	<bean id="t1" class="kr.co.soldesk.beans.TestBean1" lazy-init="true" init-method="bean1_init" destroy-method="bean1_destroy"/>
+	
+	<!-- TestBean2를 등록하되 일반 메서드가 없고 default만 선언되어 있으면 default가 실행-->
+	<bean id="t2" class="kr.co.soldesk.beans.TestBean2" lazy-init="true" />
+	
+	<!-- TestBean3를 등록하되 일반 메서드와 default가 모두 있는경우 일반 메서드가 우선 실행 -->
+	<bean id="t3" class="kr.co.soldesk.beans.TestBean3" lazy-init="true" 
+	init-method="bean3_init" destroy-method="bean3_destroy"/>
+	
+	<!-- TestBean4를 등록하되 설정된 메서드가 없으면 무시 -->
+	<bean id="t4" class="kr.co.soldesk.beans.TestBean4" lazy-init="true" />
+	
+	<!-- TestBean4를 설정된 메서드가 없는데 호출할 경우 오류 -->
+	<!-- <bean id="t4" class="kr.co.soldesk.beans.TestBean4" lazy-init="true" 
+	init-method="bean4_init" destroy-method="bean4_destroy"/> -->
+	
+</beans>
