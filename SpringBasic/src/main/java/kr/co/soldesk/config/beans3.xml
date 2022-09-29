@@ -43,4 +43,30 @@
 	   
 	</bean>
 	
+	
+	<bean id="obj8" class="kr.co.soldesk.beans.TestBean8" lazy-init="true" >
+	    <constructor-arg>
+	        <bean class="kr.co.soldesk.beans.DataBean"/>
+	    </constructor-arg>
+	    <constructor-arg>
+	        <bean class="kr.co.soldesk.beans.DataBean"/>
+	    </constructor-arg>
+    </bean>
+    
+    <!-- 이미 생선된 객체 사용 --> 
+    <!-- scope="prototype" : 선언하지 않으면 singleton으로 생성됨 -->
+	<bean id="data_bean" class="kr.co.soldesk.beans.DataBean" scope="prototype" />
+	<bean id="obj9" lazy-init="true" class="kr.co.soldesk.beans.TestBean8">
+	    <constructor-arg ref="data_bean"/>
+	    <constructor-arg ref="data_bean"/>
+    </bean>
+    
+	
+	<!-- TV인터페이스를 활용한 객체 생성 -->
+    <bean class='kr.co.soldesk.beans.SonySpeaker' id='speaker'/>
+    <bean class='kr.co.soldesk.beans.SamsungTV2' id='tv' lazy-init='true' scope="prototype">
+      <constructor-arg ref='speaker'/>
+      <constructor-arg value='2700000' type='int'/>
+    </bean> 
+      
 </beans>

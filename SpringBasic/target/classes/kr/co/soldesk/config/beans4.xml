@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id="data_bean" class="kr.co.soldesk.beans.DataBean"/>
+	<bean id="t9" class="kr.co.soldesk.beans.TestBean9">
+	    <property name="data1" value="100"/>
+	    <property name="data2" value="11.11"/>
+	    <property name="data3" value="true"/>
+	    <property name="data4" value="수요일"/>
+	    
+	    <!-- 객체 선언(의존성주입) -->
+	    <property name="data5">
+	        <bean class="kr.co.soldesk.beans.DataBean"/>
+	    </property>
+	    <!-- 이미 선언되어 있었던 클래스 참조 -->
+	    <property name="data6" ref='data_bean'/>
+	       
+	</bean>
+	<!-- 활용 -->
+	<bean id="sonyspeaker" class="kr.co.soldesk.beans.SonySpeaker" />
+	<bean id="tv" class="kr.co.soldesk.beans.SamsungTV3" scope="prototype">
+	    <property name="speaker" ref="sonyspeaker"/>
+	    <property name="price" value="270000"/>
+	</bean>
+	
+
+</beans>

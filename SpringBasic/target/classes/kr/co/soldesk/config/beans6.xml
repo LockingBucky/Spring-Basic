@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd" 
+	default-autowire="byName"
+	>
+
+	<bean class="kr.co.soldesk.beans.DataBean1" id="data_bean1" scope="prototype"/>
+	<bean class="kr.co.soldesk.beans.DataBean2" id="data_bean2" />
+	
+	<bean id="obj1" class="kr.co.soldesk.beans.TestBean11">
+	    <property name="data1" ref="data_bean1"/>
+	    <property name="data2" ref="data_bean1"/>
+    </bean>
+    
+    <!-- byName이름을 이용한 주입 -->
+    <bean id="obj2" class="kr.co.soldesk.beans.TestBean11" autowire="byName"/>
+    <bean id="data1" class="kr.co.soldesk.beans.DataBean1"/>
+    <bean id="data2" class="kr.co.soldesk.beans.DataBean1"/>
+    
+    <!-- byType이름을 이용한 주입 : 중복 선언 안됨-->
+    <bean id="obj3" class="kr.co.soldesk.beans.TestBean12" autowire="byType" />
+    
+    <!-- 생성자를 이용한 주입 -->
+    <bean class='kr.co.soldesk.beans.TestBean13' id='obj4' >
+      <constructor-arg ref="data_bean2" index="0"/>
+      <constructor-arg ref='data_bean2' index='1'/>
+   </bean>
+
+    
+    <!-- 생성자를 이용한 자동주입 -->
+    <bean class="kr.co.soldesk.beans._04TestBean3" id="obj5" autowire="constructor" />
+    
+    <!-- 생성자를 이용한 4개의 서로 다른 매개변수 주입 -->
+       
+   <bean class="kr.co.soldesk.beans._04TestBean3" id="obj6" >
+      <constructor-arg value='100' index='0' type='int'/>
+      <constructor-arg value='문자열' index='1'/>
+      <constructor-arg ref='data_bean2' index='2'/>
+      <constructor-arg ref='data_bean2' index='3'/>
+   </bean>
+   
+   <bean class="kr.co.soldesk.beans._04TestBean3" id="obj7" autowire="constructor" >
+      <constructor-arg value='200' index='0' type='int'/>
+      <constructor-arg value='문자열2' index='1'/>
+   </bean>
+    
+    
+    
+    
+    
+    
+    <!-- 아무것도 선언되어 있지 않으면 default-autowire="byName"을 사용-->
+    <bean id="obj8" class="kr.co.soldesk.beans.TestBean11"/>
+    <!-- autowire 를 사용하지 않음 -->    
+    <bean id="obj9" class="kr.co.soldesk.beans.TestBean11" autowire="no"/>
+    
+	
+</beans>
+
+

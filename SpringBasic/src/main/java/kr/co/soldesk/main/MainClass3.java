@@ -1,7 +1,14 @@
 package kr.co.soldesk.main;
 
+import java.util.ArrayList;
+
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import kr.co.soldesk.beans.DataBean;
+import kr.co.soldesk.beans.SamsungTV2;
+import kr.co.soldesk.beans.TV;
 import kr.co.soldesk.beans.TestBean7;
+import kr.co.soldesk.beans.TestBean8;
 
 public class MainClass3 {
 
@@ -63,7 +70,36 @@ public class MainClass3 {
 		TestBean7 obj7 = ctx.getBean("obj7", TestBean7.class);
 		obj7.printData();
 		System.out.println("===============================================");
+		
+		System.out.println("# DataBean의 의존성 주입");
+		DataBean d1 = new DataBean();
+		DataBean d2 = new DataBean();
+		TestBean8 t800 = new TestBean8(d1, d2);
+		t800.printData();
+		
+		System.out.println("上에 있는것과 비교하면, 下의 경우 이미 생성된 객체 사용");
+		TestBean8 obj8 = ctx.getBean("obj8", TestBean8.class);
+		obj8.printData();
+		
+		System.out.println("# 이미 생성된 객체사용");
+		System.out.println("===============================================");
+		TestBean8 obj9 = ctx.getBean("obj9", TestBean8.class);
+		obj9.printData();
 
+		System.out.println("======================= TV활용 ==========================");
+		
+//		
+//		TV tv = new SamsungTV2();
+//		List<String> list = new ArrayList<String>();
+//		List<String> list = new Vec<String>();
+		
+		TV tv = (TV) ctx.getBean("tv");
+		tv.powerOn();
+		tv.powerOff();
+		tv.VolumeUp();
+		tv.VolumeDown();
+		
+		
 		ctx.close();
 
 	}

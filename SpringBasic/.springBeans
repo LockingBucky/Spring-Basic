@@ -9,6 +9,7 @@
 	<configs>
 		<config>src/main/java/kr/co/soldesk/config/beans.xml</config>
 		<config>src/main/java/kr/co/soldesk/config/beansTest.xml</config>
+		<config>src/main/java/kr/co/soldesk/config/beans4.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>
